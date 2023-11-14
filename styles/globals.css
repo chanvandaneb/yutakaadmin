@@ -42,7 +42,11 @@ label{
 
 
 .btn-primary{
-    @apply bg-primary text-white px-4 py-1 rounded-md shadow-sm;
+    @apply px-10 py-2   bg-indigo-600 rounded-lg text-white;
+}
+
+.btn-default{
+    @apply px-10 py-2  bg-red-300 rounded-lg text-white;
 }
 
 table.basic{
@@ -51,11 +55,11 @@ table.basic{
 
 table.basic thead tr td,
 table.basic thead tr th{
-    @apply text-sm text-gray-600 uppercase border-b border-gray-300 bg-gray-300 px-4;
+    @apply text-sm font-bold text-gray-600 uppercase border-b border-gray-300 bg-gray-300 px-4;
 }
 
 table.basic tr td{
-    @apply px-5 py-5 text-gray-600 uppercase border-b;
+    @apply px-5 py-5  border-b ;
 }
 
 table.basic a{

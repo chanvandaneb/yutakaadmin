@@ -12,7 +12,7 @@ export default function Home() {
       <Layout>
         <HomeHeader/>
           <HomeStats/>
-        <Footer />
+
       </Layout>
       
   );

@@ -4,13 +4,14 @@ import axios from "axios";
 import SpinnerLogo from "@/components/SpinnerLogo";
 import Pagination from "../components/Pagination";
 import { paginate } from "@/components/PaginationUnit";
+import Link from "next/link";
 
 export default function OrdersPage() {
     const [orders,setOrders] = useState([]);
     const [records,setRecords] = useState([]);
     const [isLoading,setIsLoading] = useState(false);
     const [currentPage,setCurrentPage] = useState(1);
-    const pageSize = 5;
+    const pageSize = 6;
 
     ///
     const [searchInput,setSearchInput] = useState("");
@@ -60,9 +61,18 @@ export default function OrdersPage() {
 
 
     return(
-        <Layout>
+        <div>
             <div className="flex justify-between items-center">
-            <h1> Orders </h1>
+
+
+            <div className="flex justify-between items-center gap-5">
+                <h1> Reports </h1>
+
+                <Link className="px-10 py-2 mb-4 border border-2 border-indigo-600 rounded-lg text-black hover:bg-gray-200  "  href={'/reports/summary-reports'}>Summary</Link>
+                <Link className="px-10 py-2 mb-4  bg-indigo-600 text-slate-50 rounded-lg"  href={'/reports/detail-reports'}>Details</Link>
+
+            </div>
+
             <input type="text" className="form-control w-3/12" onChange={onChangeInputSearch} placeholder="Search..." />
     
             </div>
@@ -70,10 +80,14 @@ export default function OrdersPage() {
             <table className="basic text-left">
                 <thead>
                     <tr>
+                        <td>NO</td>
+                        <td>Customer Name</td>
                         <td>Date</td>
+                        <td>Gmail</td>
+                        <td>Phone</td>
                         <td>Paid</td>
-                        <td>Recipient</td>
                         <td>Products</td>
+                        <td>Address</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,17 +103,16 @@ export default function OrdersPage() {
                 {  records.map((order, i) => (
                     // eslint-disable-next-line react/jsx-key
                     <tr key={i} className="hover:bg-gray-200">
+                        <td>{i+1}</td>
+                        <td>{order.name}</td>
                         <td>{(new Date(order.createdAt))
                             .toLocaleString()}
                         </td>
+                        <td>{order.email}</td>
+                        <td>{order.phone}</td>
+
                         <td className={order.paid ? 'text-red-400 font-bold' : 'text-green-400 font-bold'} >
                             {order.paid ? 'NO' : 'YES'}
-                        </td>
-                        <td>
-                            {order.name} {order.email}<br />
-                            {order.city} {order.postalCode}
-                            {order.province}<br />
-                            {order.streetAddress}
                         </td>
                         <td>
                             {order.line_items.map(l => (
@@ -109,11 +122,12 @@ export default function OrdersPage() {
                                 </>
                             ))}
                         </td>
+                        <td>{order.streetAddress}, {order.city}, {order.province} </td>
                     </tr>
                 ))}
                 </tbody>
             </table>
             <Pagination items={orders.length} currentPage={currentPage} pageSize={pageSize} onPageChange={handlePageChange} />
-        </Layout>
+        </div>
     );
 }

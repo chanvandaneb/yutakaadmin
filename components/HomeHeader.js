@@ -1,6 +1,5 @@
 import {useSession} from "next-auth/react";
 import { MdOutlineNotificationsNone } from 'react-icons/md';
-import DropdownMenu from "./DropdownMenu";
 
 
 export default function HomeHeader() {
@@ -18,8 +17,6 @@ export default function HomeHeader() {
                 </div>
                 </h2>
             </div>
-
-            <DropdownMenu/>
             
         </div>
 

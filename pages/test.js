@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import Spinner from "./Spinner";
+import Spinner from "../components/Spinner";
 import { ReactSortable } from "react-sortablejs";
-import SpinnerLogo from "@/components/SpinnerLogo";
+import SpinnerLogo from "../components/SpinnerLogo";
 
 
 export default function ProductForm({
@@ -126,6 +126,13 @@ export default function ProductForm({
                 {categoriesLoading && (
                     <SpinnerLogo/>
                 )}
+
+
+
+
+
+
+
                 {propertiesToFill.length > 0 && propertiesToFill.map(p => (
                     // eslint-disable-next-line react/jsx-key
                     <div className="">
@@ -141,6 +148,15 @@ export default function ProductForm({
                         </div>
                     </div>
                 ))}
+
+
+
+
+
+
+
+
+
                 <label>
                     Photos
                 </label>
@@ -175,6 +191,19 @@ export default function ProductForm({
                         <div>No photos in this product</div>
                     )}
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
             <label>Description</label>
             <textarea 
                 placeholder="description" 

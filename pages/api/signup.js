@@ -5,7 +5,7 @@ export default async function handle(req,res) {
     await mongooseConnect();
     if(req.method === "POST"){
         try {
-            const { email,password } = req.body;
+            const {email,password } = req.body;
             const admin = await Admin.findOne({email});
             console.log(admin)
             if(!admin){

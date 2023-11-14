@@ -2,6 +2,7 @@ import { useSession, signIn, signOut } from "next-auth/react"
 import Nav  from "@/components/Nav";
 import { useState } from "react";
 import Logo from "./Logo";
+import Footer from "./Footer";
 
 export default function Layout({children}) {
   const [showNav,setShowNav] = useState(false);
@@ -32,6 +33,7 @@ export default function Layout({children}) {
         </button>
         <div className="flex grow justify-center mr-6">
           <Logo />
+          
         </div>
 
       </div>
@@ -41,7 +43,10 @@ export default function Layout({children}) {
             {children}
           </div>
         </div>
+        <Footer/>
     </div>
+
+
     
   )
 }

@@ -3,27 +3,27 @@
 }
 
 .tile1{
-    @apply bg-blue-50 shadow-md p-20 text-indigo-600 text-center rounded-lg;
+    @apply bg-blue-50 shadow-md p-20 text-indigo-600 text-center rounded-lg hover:bg-blue-200 transition duration-700 cursor-pointer;
 }
 
 .tile2{
-    @apply bg-yellow-50 shadow-md p-20 text-indigo-600 text-center rounded-lg;
+    @apply bg-yellow-50 shadow-md p-20 text-indigo-600 text-center rounded-lg hover:bg-yellow-200 transition duration-700 cursor-pointer;
 }
 
 .tile3{
-    @apply bg-indigo-50 shadow-md p-20 text-indigo-600 text-center rounded-lg;
+    @apply bg-indigo-50 shadow-md p-20 text-indigo-600 text-center rounded-lg hover:bg-indigo-200 transition duration-700 cursor-pointer;
 }
 
 .tile4{
-    @apply bg-green-50 shadow-md p-20 text-indigo-600 text-center rounded-lg;
+    @apply bg-green-50 shadow-md p-20 text-indigo-600 text-center rounded-lg hover:bg-green-200 transition duration-700 cursor-pointer;
 }
 
 .tile5{
-    @apply bg-pink-50 shadow-md p-20 text-indigo-600 text-center rounded-lg;
+    @apply bg-pink-50 shadow-md p-20 text-indigo-600 text-center rounded-lg hover:bg-pink-200 transition duration-700 cursor-pointer;
 }
 
 .tile6{
-    @apply bg-orange-50 shadow-md p-20 text-indigo-600 text-center rounded-lg;
+    @apply bg-orange-50 shadow-md p-20 text-indigo-600 text-center rounded-lg hover:bg-orange-200 transition duration-700 cursor-pointer;
 }
 
 .tile-header{
@@ -31,7 +31,7 @@
 }
 
 .tile-number{
-    @apply text-4xl text-center my-5 font-bold;
+    @apply text-2xl text-center my-5 font-bold;
 }
 
 .tile-desc{

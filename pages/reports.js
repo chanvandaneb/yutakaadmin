@@ -4,13 +4,14 @@ import axios from "axios";
 import SpinnerLogo from "@/components/SpinnerLogo";
 import Pagination from "../components/Pagination";
 import { paginate } from "@/components/PaginationUnit";
+import Link from "next/link";
 
 export default function OrdersPage() {
     const [orders,setOrders] = useState([]);
     const [records,setRecords] = useState([]);
     const [isLoading,setIsLoading] = useState(false);
     const [currentPage,setCurrentPage] = useState(1);
-    const pageSize = 5;
+    const pageSize = 6;
 
     ///
     const [searchInput,setSearchInput] = useState("");
@@ -62,14 +63,23 @@ export default function OrdersPage() {
     return(
         <Layout>
             <div className="flex justify-between items-center">
-            <h1> Orders </h1>
+
+
+            <div className="flex justify-between items-center gap-5">
+                <h1> Reports </h1>
+
+                <Link className="px-10 py-2 mb-4 border border-2 border-indigo-600 rounded-lg text-black hover:bg-gray-200"  href={'/reports/summary-reports'}>Summary</Link>
+                <Link className=" px-10 py-2 mb-4 border border-2 border-indigo-600 rounded-lg text-black hover:bg-gray-200"  href={'/reports/detail-reports'}>Details</Link>
+
+            </div>
+
             <input type="text" className="form-control w-3/12" onChange={onChangeInputSearch} placeholder="Search..." />
     
             </div>
 
             <table className="basic text-left">
                 <thead>
-                    <tr>
+                        <tr>
                         <td>Date</td>
                         <td>Paid</td>
                         <td>Recipient</td>
@@ -89,27 +99,27 @@ export default function OrdersPage() {
                 {  records.map((order, i) => (
                     // eslint-disable-next-line react/jsx-key
                     <tr key={i} className="hover:bg-gray-200">
-                        <td>{(new Date(order.createdAt))
-                            .toLocaleString()}
-                        </td>
-                        <td className={order.paid ? 'text-red-400 font-bold' : 'text-green-400 font-bold'} >
-                            {order.paid ? 'NO' : 'YES'}
-                        </td>
-                        <td>
-                            {order.name} {order.email}<br />
-                            {order.city} {order.postalCode}
-                            {order.province}<br />
-                            {order.streetAddress}
-                        </td>
-                        <td>
-                            {order.line_items.map(l => (
-                                <>
-                                    {l.price_data?.product_data?.name} x
-                                    {l.quantity}<br />
-                                </>
-                            ))}
-                        </td>
-                    </tr>
+                    <td>{(new Date(order.createdAt))
+                        .toLocaleString()}
+                    </td>
+                    <td className={order.paid ? 'text-red-400 font-bold' : 'text-green-400 font-bold'} >
+                        {order.paid ? 'NO' : 'YES'}
+                    </td>
+                    <td>
+                        {order.name}, {order.email}<br />
+                        {order.streetAddress}, {order.city}, <br/>
+                        {order.postalCode}, {order.province}<br />
+                        
+                    </td>
+                    <td>
+                        {order.line_items.map(l => (
+                            <>
+                                {l.price_data?.product_data?.name} x
+                                {l.quantity}<br />
+                            </>
+                        ))}
+                    </td>
+                </tr>
                 ))}
                 </tbody>
             </table>

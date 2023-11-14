@@ -3,20 +3,86 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SpinnerLogo from "@/components/SpinnerLogo";
+import Pagination from "@/components/Pagination";
+import { paginate } from "@/components/PaginationUnit";
 
 export default function Products() {
+ 
+
+
     const [products,setProducts] = useState([]);
+    const [records,setRecords] = useState([]);
     const [isLoading,setIsLoading] = useState(false);
+    const [currentPage,setCurrentPage] = useState(1);
+    const pageSize = 5;
+
+    ///
+    const [searchInput,setSearchInput] = useState("");
+
     useEffect(() => {
         setIsLoading(true);
         axios.get('/api/products').then(response => {
             setProducts(response.data);
+            console.log("response.data",response.data)
+            // setRecords(response.data);
             setIsLoading(false);
         });
     }, []);
+
+    useEffect(() => {
+
+        const FilterFunction = (rec, word) => {
+            var result = rec.filter(f => f.title.toLowerCase().includes(word))
+            return result;
+        }
+
+        var resultFiltered = FilterFunction(products , searchInput)
+
+        const paginatePost = paginate(resultFiltered, currentPage, pageSize);
+
+
+        console.log("searchInput",searchInput)
+        console.log("resultFiltered",resultFiltered)
+        console.log("paginatePost",paginatePost)
+
+        setRecords(paginatePost);
+    }, [searchInput, products, currentPage, pageSize]);
+
+    // const FilterFunction = (event) => {
+    //     setRecords(orders.filter(f => f.name.toLowerCase().includes(event.target.value)))
+    // }
+
+    const handlePageChange = page => {
+        setCurrentPage(page);
+    }
+
+    const onChangeInputSearch = (event) => {
+        setSearchInput(event.target.value)
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     return (
         <Layout>
+        <div className="flex justify-between items-center"> 
+        
             <Link className="px-10 py-2  bg-indigo-600 rounded-lg text-white mt-2"  href={'/products/new'}>Add new product</Link>
+
+            <input type="text" className="form-control w-3/12" onChange={onChangeInputSearch} placeholder="Search..." />
+
+        </div>
+
             <table className="basic mt-8">
                 <thead>
                     <tr>
@@ -36,14 +102,18 @@ export default function Products() {
                         </tr>
                     )}
 
-                    {products.map(product => (
+                    {records.length > 0 && records.map(product => (
                         <tr key={product._id} className="hover:bg-gray-200">
-                            <td>
-                            {product.title}
+                            <td className="flex items-center">
+                                <div><img className="w-20 h-20 rounded-full mr-5" src={product.images[0]} alt={product.title} /></div>
+                                <div className="ml-2">{product.title.slice(0,30)}</div>
+                            
                             </td>
-                            <td>{product.description}</td>
-                            <td>{product.price}$</td>
-                            <td>{product.stock}</td>
+                            <td>{product.description.slice(0,120)}</td>
+                            <td>${product.price.toFixed(2)}</td>
+                            <td className={product.stock <= 0 ? 'text-red-400' : ''} >
+                            {product.stock <= 0 ? 'Out of stock' : product.stock }
+                            </td>
                             <td>
                             <div className="flex">
                                 <Link className="text-green-600" href={'/products/view/'+product._id}>
@@ -83,6 +153,10 @@ export default function Products() {
                     ))}
                 </tbody>
             </table>
+            <Pagination items={products.length} currentPage={currentPage} pageSize={pageSize} onPageChange={handlePageChange} />
         </Layout>
     );
 }
+
+
+

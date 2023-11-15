@@ -1,11 +1,26 @@
-import Dropdown from '@/components/Dropdown'
-import Exportexcel from '@/components/ExportXcel'
-import React from 'react'
+import React, {
+  useEffect, useState
+} from 'react'
+import axios from 'axios';
 
-export default function test() {
+export default function TestPage() {
+
+  const [ products, setProducts ] = useState(null)
+
+  useEffect(() => {
+    axios.get('/api/products').then(response => {
+      setProducts(response.data);
+    });
+  }, []);
+
+  console.log(products)
+
+
+  console.log()
   return (
+
     <div>
-      <Exportexcel/>
+    hello
     </div>
   )
 }

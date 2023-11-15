@@ -1,8 +1,8 @@
 import { Admin } from "@/models/Admin";
+import {mongooseConnect} from "@/lib/mongoose";
 
 export default async function handle(req,res) {
-    
-
+    await mongooseConnect();
    if(req.method === "POST"){
     try {
         const { email,password } = req.body;

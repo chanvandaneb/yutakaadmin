@@ -52,17 +52,6 @@ export default function Categories() {
         setProperties([]);
         fetchCategories();
     }
-
-
-
-
-
-
-
-
-
-
-
     
     async function uploadImages(ev) {
         const files = ev.target?.files;

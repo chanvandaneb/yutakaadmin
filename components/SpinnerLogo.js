@@ -1,14 +1,14 @@
-import {PacmanLoader} from "react-spinners";
+import {DotLoader} from "react-spinners";
 
 export default function SpinnerLogo({fullWith}) {
     if (fullWith) {
         return (
             <div className="w-full flex justify-center">
-                <PacmanLoader color={'#1E3A8A'} speedMultiplier={2} />
+                <DotLoader color={'#4F46E5'} speedMultiplier={1} />
             </div>
         );
     }
     return (
-        <PacmanLoader color={'#1E3A8A'} speedMultiplier={2} />
+        <DotLoader color={'#4F46E5'} speedMultiplier={1} />
     );
 }

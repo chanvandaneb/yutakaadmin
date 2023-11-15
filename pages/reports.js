@@ -32,9 +32,51 @@ export default function OrdersPage() {
         axios.get('/api/orders').then(response => {
             setOrders(response.data);
             setAllOrders(response.data);
-            setExportData(response.data);
-            console.log("response.data",response.data)
-            // setRecords(response.data);
+            setRecords(response.data);
+
+
+
+
+            var listOrderData = response?.data;
+            var newListOrder = [];
+
+            console.log("listOrderData",listOrderData);
+
+
+            if(listOrderData?.length > 0){
+
+                for (let i=0; i < listOrderData?.length; i++){
+
+                    let currIndexData = listOrderData?.[i];
+
+                    if(!currIndexData?._id) continue;
+
+                    let newObj = {
+                        Id : currIndexData?._id,                     
+                        Name: currIndexData?.name 
+                    }
+
+                    newListOrder.push(newObj);
+                    
+                }
+
+            }
+            
+
+            console.log("newListOrder",newListOrder);
+
+
+
+            setExportData(newListOrder);
+
+
+
+
+
+
+
+
+
             setIsLoading(false);
         });
     }, []);

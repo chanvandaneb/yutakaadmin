@@ -1,7 +1,7 @@
-import {RingLoader} from "react-spinners";
+import {ScaleLoader} from "react-spinners";
 
 export default function Spinner() {
     return (
-        <RingLoader color={'#1E3A8A'} speedMultiplier={2} />
+        <ScaleLoader color={'#1E3A8A'} speedMultiplier={1} />
     );
 }

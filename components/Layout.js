@@ -3,17 +3,14 @@ import Nav  from "@/components/Nav";
 import { useState } from "react";
 import Logo from "./Logo";
 import Footer from "./Footer";
+import LoginWithGoogle from "@/components/LoginWithGoogle";
 
 export default function Layout({children}) {
   const [showNav,setShowNav] = useState(false);
   const {data: session} = useSession()
   if(!session){
     return(
-      <div className="bg-bgGray w-screen h-screen flex items-center">
-        <div className="text-center w-full">
-          <button onClick={() => signIn('google')} className="border-2 border-indigo-500 p-2 px-4 rounded-lg">Login with Google</button>
-        </div>
-      </div>
+      <LoginWithGoogle/>
     );
   }
 

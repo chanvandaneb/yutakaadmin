@@ -7,6 +7,9 @@ const CategorySchema = new Schema({
     parent: {type:mongoose.Schema.Types.ObjectId, ref:'Category'},
     properties: [{type:Object}]
     
+}
+, {
+    timestamps: true,
 });
 
 

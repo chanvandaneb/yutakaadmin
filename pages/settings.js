@@ -9,6 +9,7 @@ function SettingsPage({swal}) {
     const [featuredProductId, setFeaturedProductId] = useState('');
     const [isLoading,setIsLoading] = useState(false);
     const [shippingFee,setShippingFee] = useState('');
+    const [vatFee,SetVatFee] = useState('');
 
     useEffect(() => {
         setIsLoading(true);
@@ -26,6 +27,9 @@ async function fetchAll(){
     await axios.get('/api/settings?name=shippingFee').then(res => {
         setShippingFee(res.data);
     });
+    await axios.get('/api/settings?name=vatFee').then(res => {
+        SetVatFee(res.data);
+    });
 }
     async function saveSettings() {
         setIsLoading(true);
@@ -36,6 +40,10 @@ async function fetchAll(){
         await axios.put('/api/settings', {
             name: 'shippingFee',
             value: shippingFee,
+        });
+        await axios.put('/api/settings', {
+            name: 'vatFee',
+            value: vatFee,
         });
         setIsLoading(false);
         await swal.fire({
@@ -63,6 +71,11 @@ async function fetchAll(){
                     <input type="number"
                            value={shippingFee}
                            onChange={ev => setShippingFee(ev.target.value)}/>
+                
+                    <label>VAT Fee</label>
+                    <input type="number"
+                           value={vatFee}
+                           onChange={ev => SetVatFee(ev.target.value)}/>
                     <div>
                         <button onClick={saveSettings} className="btn-primary">Save Setting</button>
                     </div>

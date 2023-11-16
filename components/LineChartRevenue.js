@@ -62,6 +62,27 @@ function LineChart() {
 
 
 
+
+  function ordersTotal(orders) {
+    let sum = 0;
+    orders.forEach(order => {
+        const {line_items} = order;
+        line_items.forEach(li => {
+            const lineSum = li.quantity * li.price_data.unit_amount / 100;
+            sum += lineSum;
+        });
+    });
+    return new Intl.NumberFormat('sv-SE').format(sum);
+}
+
+
+
+
+
+
+
+
+
 function getFirstDayOfMonth(year, month) {
   return new Date(year, month, 1);
 }
@@ -79,14 +100,22 @@ function filterOrdersForMonth(orders, year, month) {
   return orders.filter(o => new Date(o.createdAt) >= firstDayOfMonth && new Date(o.createdAt) <= lastDayOfMonth);
 }
 
+
+
+
+
+
 var salesData = [];
 
 for (var i = 0; i < 12; i++) {
-  var currentMonthOrders = filterOrdersForMonth(orders, 2023, i); 
-  var currentMonthOrderNumber = currentMonthOrders.length;
+  var currentMonthOrderNumber = filterOrdersForMonth(orders, 2023, i); 
+
 
   salesData.push({ month: getMonthName(i), sales: currentMonthOrderNumber });
 }
+
+console.log(salesData)
+
 
 function getMonthName(index) {
   var months = [
@@ -102,8 +131,8 @@ function getMonthName(index) {
     labels: salesData.map((data) => data.month),
     datasets: [
       {
-        label: "Sale",
-        data: salesData.map((data) => data.sales),
+        label: "Sale Data",
+        data: salesData.map((data) => data.ordersTotal(sales)),
         borderColor: "#4F46E5",
         borderWidth: 3,
         pointBorderColor: "#4F46E5",

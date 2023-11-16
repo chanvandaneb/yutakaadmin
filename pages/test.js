@@ -2,13 +2,14 @@ import React, {
   useEffect, useState
 } from 'react'
 import axios from 'axios';
+import SignIn from '../components/signin/SignIn';
 
 export default function TestPage() {
 
   const [ products, setProducts ] = useState(null)
 
   useEffect(() => {
-    axios.get('/api/products').then(response => {
+    axios.get('/api/categories').then(response => {
       setProducts(response.data);
     });
   }, []);
@@ -20,7 +21,7 @@ export default function TestPage() {
   return (
 
     <div>
-    hello
+    <SignIn/>
     </div>
   )
 }

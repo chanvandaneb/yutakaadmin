@@ -4,6 +4,7 @@ import SpinnerLogo from "@/components/SpinnerLogo";
 import {subHours} from "date-fns";
 import React from "react";
 import HomeStatsModal from "@/components/HomeStatsModal";
+import LineChart from "./LineChart";
 
 export default function HomeStats() {
     const [orders,setOrders] = useState([]);
@@ -74,7 +75,6 @@ export default function HomeStats() {
                       ) : null}
                 </div>
 
-
                 <div className="tile2">
                     <h3 className="tile-header">This week</h3>
                     <div className="tile-number">{ordersWeek.length}</div>
@@ -86,6 +86,9 @@ export default function HomeStats() {
                     <div className="tile-desc">{ordersMonth.length} orders this month</div>
                 </div>
             </div>
+
+
+
             <h2 className="font-bold">Revenue</h2>
             <div className="tiles-grid">
                 <div className="tile4">
@@ -103,6 +106,17 @@ export default function HomeStats() {
                     <div className="tile-number">$ {ordersTotal(ordersMonth)}</div>
                     <div className="tile-desc">{ordersMonth.length} orders this month</div>
                 </div>
+            </div>
+
+
+            <h2 className="font-bold">Chart Data</h2>
+            <div className="div">
+                <LineChart/>
+            </div>
+
+            <h2 className="font-bold">Chart Revenue</h2>
+            <div className="div">
+                <LineChart/>
             </div>
         </div>
     );

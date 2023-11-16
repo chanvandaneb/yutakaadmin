@@ -35,6 +35,67 @@ export default function OrdersPage() {
             setExportData(response.data);
             console.log("response.data",response.data)
             // setRecords(response.data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+            var listOrderData = response?.data;
+            var newListOrder = [];
+
+            console.log("listOrderData",listOrderData);
+
+
+            if(listOrderData?.length > 0){
+
+                for (let i=0; i < listOrderData?.length; i++){
+
+                    let currIndexData = listOrderData?.[i];
+
+                    if(!currIndexData?._id) continue;
+
+
+                    let newObj = {                   
+                        Nme: currIndexData?.name, 
+                        Date: currIndexData?.createdAt, 
+                        Paid: currIndexData?.paid,
+                        Email: currIndexData?.email,
+                        Phone: currIndexData?.phone,
+                        Product: currIndexData?.line_items[0]?.price_data?.product_data?.name,
+                        Quantity: currIndexData?.line_items[0]?.price_data?.product_data?.quantity,
+                        Address: currIndexData?.streetAddress + currIndexData?.city + currIndexData?.province
+                    }
+                    newListOrder.push(newObj);
+                    
+                }
+
+            }
+            
+
+            console.log("newListOrder",newListOrder);
+
+
+
+            setExportData(newListOrder);
+
+
+
+
+
+
+
+
+
             setIsLoading(false);
         });
     }, []);
@@ -179,8 +240,8 @@ export default function OrdersPage() {
                         </td>
                         <td>{order.email}</td>
                         <td>{order.phone}</td>
-                        <td className={order.paid ? 'text-red-400 font-bold' : 'text-green-400 font-bold'} >
-                            {order.paid ? 'NO' : 'YES'}
+                        <td className={order.paid ? 'text-green-500 font-bold' : 'text-red-600 font-bold'} >
+                            {order.paid ? 'YES' : 'NO'}
                         </td>
                         <td>
                             {order.line_items.map(l => (

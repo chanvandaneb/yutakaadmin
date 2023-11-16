@@ -51,9 +51,13 @@ export default function OrdersPage() {
 
                     if(!currIndexData?._id) continue;
 
-                    let newObj = {
-                        Id : currIndexData?._id,                     
-                        Name: currIndexData?.name 
+
+                    let newObj = {                   
+                        Nme: currIndexData?.name, 
+                        Date: currIndexData?.createdAt, 
+                        Paid: currIndexData?.paid,
+                        Product: currIndexData?.line_items[0]?.price_data?.product_data?.name,
+                        Quantity: currIndexData?.line_items[0]?.price_data?.product_data?.quantity
                     }
 
                     newListOrder.push(newObj);
@@ -216,8 +220,8 @@ export default function OrdersPage() {
                         <td>{(new Date(order.createdAt))
                             .toLocaleString()}
                         </td>
-                        <td className={order.paid ? 'text-red-400 font-bold' : 'text-green-400 font-bold'} >
-                            {order.paid ? 'NO' : 'YES'}
+                        <td className={order.paid ? 'text-green-500 font-bold' : 'text-red-600 font-bold'} >
+                            {order.paid ? 'YES' : 'NO'}
                         </td>
                         <td>
                             {order.line_items.map(l => (

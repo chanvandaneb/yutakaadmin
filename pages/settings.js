@@ -10,8 +10,6 @@ function SettingsPage({swal}) {
     const [isLoading,setIsLoading] = useState(false);
     const [shippingFee,setShippingFee] = useState('');
 
-
-
     useEffect(() => {
         setIsLoading(true);
         fetchAll().then(() => {

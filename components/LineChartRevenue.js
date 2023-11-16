@@ -63,21 +63,6 @@ function LineChart() {
 
 
 
-  function ordersTotal(orders) {
-    let sum = 0;
-    orders.forEach(order => {
-        const {line_items} = order;
-        line_items.forEach(li => {
-            const lineSum = li.quantity * li.price_data.unit_amount / 100;
-            sum += lineSum;
-        });
-    });
-    return new Intl.NumberFormat('sv-SE').format(sum);
-}
-
-
-
-
 
 
 
@@ -125,6 +110,23 @@ function getMonthName(index) {
 
   return months[index];
 }
+
+
+
+
+
+function ordersTotal(orders) {
+  let sum = 0;
+  orders.forEach(order => {
+      const {line_items} = order;
+      line_items.forEach(li => {
+          const lineSum = li.quantity * li.price_data.unit_amount / 100;
+          sum += lineSum;
+      });
+  });
+  return new Intl.NumberFormat('sv-SE').format(sum);
+}
+
 
 
   const data = {

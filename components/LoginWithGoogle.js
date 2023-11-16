@@ -7,7 +7,7 @@ export default function test() {
       <div class="flex flex-col md:flex-row h-screen items-center">
         <div class="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
           <img
-            src="https://source.unsplash.com/random"
+            src="https://source.unsplash.com/random/?food"
             alt=""
             class="w-full h-full object-cover"
           />

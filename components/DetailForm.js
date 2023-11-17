@@ -70,9 +70,9 @@ export default function OrdersPage() {
                         Date: currIndexData?.createdAt, 
                         Paid: currIndexData?.paid,
                         Email: currIndexData?.email,
-                        Phone: currIndexData?.phone,
+                        Phone: currIndexData?.phoneNumber,
                         Product: currIndexData?.line_items[0]?.price_data?.product_data?.name,
-                        Quantity: currIndexData?.line_items[0]?.price_data?.product_data?.quantity,
+                        Quantity: currIndexData?.line_items[0]?.price_data?.quantity,
                         Address: currIndexData?.streetAddress + currIndexData?.city + currIndexData?.province
                     }
                     newListOrder.push(newObj);
@@ -239,7 +239,7 @@ export default function OrdersPage() {
                             .toLocaleString()}
                         </td>
                         <td>{order.email}</td>
-                        <td>{order.phone}</td>
+                        <td>{order.phoneNumber}</td>
                         <td className={order.paid ? 'text-green-500 font-bold' : 'text-red-600 font-bold'} >
                             {order.paid ? 'YES' : 'NO'}
                         </td>

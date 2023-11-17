@@ -115,6 +115,8 @@ function getMonthName(index) {
 
 
 
+
+
 function ordersTotal(orders) {
   let sum = 0;
   orders.forEach(order => {
@@ -126,6 +128,11 @@ function ordersTotal(orders) {
   });
   return new Intl.NumberFormat('sv-SE').format(sum);
 }
+
+
+
+
+
 
 
 

@@ -86,7 +86,7 @@ export default function OrdersPage() {
                         </td>
                     </tr>
                 )}
-                {  records.map((order, i) => (
+                { records.length > 0 && records.map((order, i) => (
                     // eslint-disable-next-line react/jsx-key
                     <tr key={i} className="hover:bg-gray-200">
                         <td>{(new Date(order.createdAt))
@@ -97,9 +97,10 @@ export default function OrdersPage() {
                         </td>
                         <td>
                             {order.name} {order.email}<br />
-                            {order.city} {order.postalCode}
-                            {order.province}<br />
                             {order.streetAddress}
+                            {order.city}
+                            {order.province}<br />
+                            {order.phoneNumber}<br />
                         </td>
                         <td>
                             {order.line_items.map(l => (

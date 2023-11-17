@@ -18,7 +18,7 @@ export default function HomeStats() {
 
     if (isLoading) {
         return (
-            <div className="my-4">
+            <div className="my-1">
                 <SpinnerLogo fullWith={true}/>
             </div>
         );
@@ -97,10 +97,7 @@ export default function HomeStats() {
                 <LineChart/>
             </div>
 
-            <h2 className="font-bold">Chart Revenue</h2>
-            <div className="div">
-                <LineChart/>
-            </div>
+        
         </div>
     );
 }
